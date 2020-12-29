@@ -7,8 +7,7 @@ use App\MahasiswaModel; //tambah model yang ada
 
 class apicontroller extends Controller
 {
-    public function get_all_mahasiswa()
-    {
+    public function get_all_mahasiswa(){
         return response()->json(MahasiswaModel::all(), 200);
     }
 
@@ -26,5 +25,29 @@ class apicontroller extends Controller
             'message' => 'Data Saved',
             'data' => $insert_mahasiswa
         ],200);
+    }
+
+    public function update_data_mahasiswa(Request $request, $id){
+        $check = MahasiswaModel::firstWhere('nim', $id);
+
+        if($check){
+            $data_mahasiswa = MahasiswaModel::find($id);
+            $data_mahasiswa->nim = $request->nim;
+            $data_mahasiswa->nama = $request->nama;
+            $data_mahasiswa->kelas = $request->kelas;
+            $data_mahasiswa->prodi = $request->prodi;
+            $data_mahasiswa->fakultas = $request->fakultas;
+            $data_mahasiswa->save();
+            return response([
+                'status' => 'OK',
+                'message' => 'Data Updated',
+                'data' => $data_mahasiswa
+            ],200);
+        }else{
+            return response([
+                'status' => 'Not Found',
+                'message' => 'NIM Mahasiswa not found',
+            ],404);
+        }
     }
 }
