@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('mahasiswa', 'apicontroller@get_all_mahasiswa');
+Route::post('mahasiswa/insert_data', 'apicontroller@insert_data_mahasiswa');
