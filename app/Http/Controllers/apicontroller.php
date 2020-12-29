@@ -50,4 +50,21 @@ class apicontroller extends Controller
             ],404);
         }
     }
+
+    public function delete_data_mahasiswa($id){
+        $check = MahasiswaModel::firstWhere('nim', $id);
+
+        if($check){
+            MahasiswaModel::destroy($id);
+            return response([
+                'status' => 'OK',
+                'message' => 'Data Deleted',
+            ],200);
+        }else{
+            return response([
+                'status' => 'Not Found',
+                'message' => 'NIM Mahasiswa not found',
+            ],404);
+        }
+    }
 }

@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('mahasiswa', 'apicontroller@get_all_mahasiswa');
 Route::post('mahasiswa/insert', 'apicontroller@insert_data_mahasiswa');
 Route::post('mahasiswa/update/{nim}', 'apicontroller@update_data_mahasiswa');
+Route::post('mahasiswa/delete/{nim}', 'apicontroller@delete_data_mahasiswa');
